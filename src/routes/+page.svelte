@@ -1,4 +1,39 @@
-<h1>this.me - svelte5-test</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import TaskForm from '../components/task-form.svelte';
 
-<!-- this is just a test -->
+	type Task = {
+		id: string;
+		title: string;
+		done: boolean;
+	};
+
+	let message = 'Tasks App';
+	let tasks = $state<Task[]>([]);
+
+	function addTask(newTask: string) {
+		tasks.push({
+			id: crypto.randomUUID(),
+			title: newTask,
+			done: false
+		});
+	}
+</script>
+
+<main>
+	<h1>{message}</h1>
+	<TaskForm {addTask} />
+	<section>
+		{#each tasks as task}
+			<article>
+				{task.title}
+			</article>
+		{/each}
+	</section>
+</main>
+
+<style>
+	main {
+		margin: 1rem auto;
+		max-width: 800px;
+	}
+</style>
