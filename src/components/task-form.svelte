@@ -19,7 +19,7 @@
 		<input name="newTask" bind:value={newTask} />
 	</label>
 	<div class="button-container">
-		<button>Add something</button>
+		<button>submit</button>
 	</div>
 </form>
 
